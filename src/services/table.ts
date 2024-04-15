@@ -1,5 +1,5 @@
 import { supabase } from "config/supabase";
-import { DatabaseType } from "types/database";
+import { ItensType } from "types/sistema";
 
 export async function getData(database: string, setDados: any, setBackup: any) {
     let { data: dados, error } = await supabase
@@ -13,10 +13,10 @@ export async function getData(database: string, setDados: any, setBackup: any) {
     return dados;
 }
 
-export async function insertData(database: string, data: DatabaseType) {
+export async function insertData(database: string, data: ItensType) {
     const { error } = await supabase
         .from(database)
-        .insert([{ problema: data.problema }])
+        .insert([data])
         .select()
     if (error) return error
     return 'success'
