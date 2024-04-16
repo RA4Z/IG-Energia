@@ -24,6 +24,10 @@
         border-radius: 5px;
         border: 1px solid $shadow;
 
+        img {
+            min-height: 80%;
+        }
+
         .top {
             height: 80%;
             width: 100%;

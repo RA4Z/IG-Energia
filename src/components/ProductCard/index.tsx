@@ -21,6 +21,7 @@ interface Props {
 
 export default function ProductCard(props: Props) {
     const [deletando, setDeletando] = useState(false)
+    const [detectado, setDetectado] = useState(false)
     const [selected, setSelected] = useState(false)
 
     const adicionar = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -49,14 +50,19 @@ export default function ProductCard(props: Props) {
     };
 
     useEffect(() => {
+        setDetectado(false)
         if (props.itemsCarrinho.length > 0 || deletando) {
             const itemsString = JSON.stringify(props.itemsCarrinho);
             localStorage.setItem('items', itemsString);
         }
         if (props.itemsCarrinho.some(objeto => objeto.id === props.id)) {
+            setDetectado(true)
             setSelected(true)
         }
-    }, [props.itemsCarrinho, deletando, props.id])
+        if (!detectado) {
+            setSelected(false)
+        }
+    }, [props.itemsCarrinho, deletando, props.id, detectado])
 
     return (
         <div className={styles.wrapper}>
