@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './ImportImage.module.scss';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import { insertImage, updateImage } from 'services/table';
@@ -8,8 +7,10 @@ interface Props {
     data: ItensType,
 }
 
-function ImportImage(props: Props) {
+export default function ImportImage(props: Props) {
+
     const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        console.log(`id => ${props.data.id}`)
         if (event.target.files && event.target.files[0]) {
             const file = event.target.files[0];
 
@@ -28,11 +29,9 @@ function ImportImage(props: Props) {
     }
 
     return (
-        <div className={styles.export} >
-            <label htmlFor='selecao-arquivo'><AddPhotoAlternateIcon fontSize='large' /></label>
-            <input id='selecao-arquivo' type="file" accept="image/png, image/jpeg, image/jpg" onChange={handleFileChange} />
-        </div>
+        <input id='selecao-arquivo' type="file" accept="image/png, image/jpeg, image/jpg" onChange={handleFileChange} />
+        // <div className={styles.export} >
+        //     <label htmlFor='selecao-arquivo'><AddPhotoAlternateIcon fontSize='large' /></label>
+        // </div>
     );
 }
-
-export default ImportImage;

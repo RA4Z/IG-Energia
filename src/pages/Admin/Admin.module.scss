@@ -49,3 +49,19 @@
         }
     }
 }
+
+.export {
+    input[type="file"] {
+        display: none;
+    }
+
+    label {
+        color: $secondary;
+        cursor: pointer;
+        transition: .5s;
+
+        &:hover {
+            color: $primary;
+        }
+    }
+}
