@@ -24,12 +24,16 @@ export async function insertData(database: string, data: ItensType) {
 }
 
 export async function updateImage(database: string, id: any, desiredValue: any) {
+    console.log(desiredValue)
     const { error } = await supabase
         .from(database)
         .update({ image: desiredValue })
-        .eq(id, id)
+        .eq('id', id)
         .select()
-    if (error) return error
+    if (error) {
+        console.error('Upload error:', error); // Log the error for debugging
+        return Promise.reject(error); // Reject the promise with the error
+    }
     return 'success'
 }
 
