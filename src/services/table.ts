@@ -16,9 +16,24 @@ export async function getData(database: string, setDados: any, setBackup: any) {
 export async function insertData(database: string, data: ItensType) {
     const { error } = await supabase
         .from(database)
-        .insert([data])
+        .insert([{ ...data, id: undefined }])
         .select()
     if (error) return error
     return 'success'
 }
 
+export async function insertImage(file: any, filename: string) {
+    const { error } = await supabase
+        .storage
+        .from('images')
+        .upload(`/Products/${filename}`, file, {
+            cacheControl: '3600', // Set cache expiration (optional)
+            upsert: true, // Overwrite existing file with same name (optional)
+        });
+
+    if (error) {
+        console.error('Upload error:', error); // Log the error for debugging
+        return Promise.reject(error); // Reject the promise with the error
+    }
+    return `https://eljilalbzabmkahtvfkv.supabase.co/storage/v1/object/public/images/Products/${filename}`
+}

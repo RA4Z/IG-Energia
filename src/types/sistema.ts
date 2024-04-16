@@ -7,6 +7,15 @@ export interface CarrinhoType {
     value: number,
 }
 
+export const ItensDefault = {
+    id: '',
+    title: '',
+    image: '',
+    category: '',
+    information: '',
+    unityValue: 0,
+}
+
 export interface ItensType {
     id: any,
     title: string,
