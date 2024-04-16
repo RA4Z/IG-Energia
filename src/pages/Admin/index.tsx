@@ -51,13 +51,15 @@ export default function Admin() {
                     <InputBox label={field} key={field}
                         texto={value} onChange={e => setData({ ...data, [field]: e.target.value })} />
                 ))}
-                <ImportImage data={data} setData={setData} />
             </div>
             <BotaoHover text="Realizar Cadastro" onClick={() => cadastrar()} />
             <div className={styles.lista}>
                 {dados.map(dado => (
                     <div className={styles.lista__card}>
-                        <h1>{dado.title}</h1>
+                        <div className={styles.lista__card__header}>
+                            <h1>{dado.title}</h1>
+                            <ImportImage data={dado} />
+                        </div>
                         <img src={dado.image} alt={dado.title} />
                         <h3>{dado.category}</h3>
                         <h3>{dado.information}</h3>

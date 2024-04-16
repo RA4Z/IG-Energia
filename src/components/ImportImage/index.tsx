@@ -1,12 +1,11 @@
 import React from 'react';
 import styles from './ImportImage.module.scss';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
-import { insertImage } from 'services/table';
+import { insertImage, updateImage } from 'services/table';
 import { ItensType } from 'types/sistema';
 
 interface Props {
     data: ItensType,
-    setData: any
 }
 
 function ImportImage(props: Props) {
@@ -15,8 +14,13 @@ function ImportImage(props: Props) {
             const file = event.target.files[0];
 
             try {
-                const url = await insertImage(file, `Teste.jpg`);
-                props.setData({ ...props.data, image: url })
+                const url = await insertImage(file, `imagemId${props.data.id}.jpg`);
+                const result = await updateImage('Itens', props.data.id, url)
+                if (result === 'success') {
+                    window.location.reload()
+                } else {
+                    alert(`Ocorreu o erro ${result}`)
+                }
             } catch (error) {
                 console.error('Erro ao carregar a imagem:', error);
             }

@@ -1,6 +1,6 @@
 export function algumCampoVazio(data: any) {
     const algumCampoVazio = Object.entries(data)
-        .filter(([fieldName, value]) => (value === "" && fieldName !== 'id'))
+        .filter(([fieldName, value]) => (value === "" && fieldName !== 'id' && fieldName !== 'image'))
         .length > 0;
     if (algumCampoVazio) return true
 }

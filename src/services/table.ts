@@ -14,9 +14,20 @@ export async function getData(database: string, setDados: any, setBackup: any) {
 }
 
 export async function insertData(database: string, data: ItensType) {
+    const { id, ...sendObject } = { ...data };
     const { error } = await supabase
         .from(database)
-        .insert([{ ...data, id: undefined }])
+        .insert([sendObject])
+        .select()
+    if (error) return error
+    return 'success'
+}
+
+export async function updateImage(database: string, id: any, desiredValue: any) {
+    const { error } = await supabase
+        .from(database)
+        .update({ image: desiredValue })
+        .eq(id, id)
         .select()
     if (error) return error
     return 'success'
@@ -36,4 +47,4 @@ export async function insertImage(file: any, filename: string) {
         return Promise.reject(error); // Reject the promise with the error
     }
     return `https://eljilalbzabmkahtvfkv.supabase.co/storage/v1/object/public/images/Products/${filename}`
-}
+}//
