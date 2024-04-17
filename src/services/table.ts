@@ -23,6 +23,19 @@ export async function insertData(database: string, data: ItensType) {
     return 'success'
 }
 
+export async function updateData(database: string, id: any, data: ItensType) {
+    const { error } = await supabase
+        .from(database)
+        .update({ title: data.title, category: data.category, information: data.information, unityValue: data.unityValue })
+        .eq('id', id)
+        .select()
+    if (error) {
+        console.error('Upload error:', error); // Log the error for debugging
+        return Promise.reject(error); // Reject the promise with the error
+    }
+    return 'success'
+}
+
 export async function updateImage(database: string, id: any, desiredValue: any) {
     const { error } = await supabase
         .from(database)

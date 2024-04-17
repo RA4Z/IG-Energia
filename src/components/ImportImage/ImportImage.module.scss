@@ -6,6 +6,9 @@
         display: none;
     }
 
+    position: absolute;
+    transform: translate(150%, 100%);
+
     label {
         color: $secondary;
         cursor: pointer;

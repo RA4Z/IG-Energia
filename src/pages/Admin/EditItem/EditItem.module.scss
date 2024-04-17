@@ -1,0 +1,27 @@
+@import "styles/variables";
+@import "styles/breakpoints";
+
+.editIcon {
+    display: flex;
+    border: none;
+    width: 100%;
+    justify-content: flex-end;
+
+    label {
+        color: $secondary;
+        position: absolute;
+        cursor: pointer;
+        transition: .5s;
+
+        &:hover {
+            color: $primary;
+        }
+    }
+}
+.inputs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px;
+    gap: 20px;
+}

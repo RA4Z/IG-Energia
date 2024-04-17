@@ -10,6 +10,8 @@ import { insertData } from "services/table"
 import { algumCampoVazio } from "utils"
 import { ItensDefault, ItensType } from "types/sistema"
 import ImportImage from "components/ImportImage"
+import EditIcon from '@mui/icons-material/Edit';
+import EditItem from "./EditItem"
 
 export default function Admin() {
     const navigate = useNavigate()
@@ -30,7 +32,6 @@ export default function Admin() {
     }, [navigate])
 
     async function cadastrar() {
-        console.log(data)
         if (algumCampoVazio(data)) return alert('Por favor, preencha todos os campos antes de realizar o cadastro.');
 
         const result = await insertData('Itens', data)
@@ -56,11 +57,12 @@ export default function Admin() {
             <div className={styles.lista}>
                 {dados.map(dado => (
                     <div className={styles.lista__card} key={dado.title}>
+                        <EditItem {...dado} />
+                        <h1>{dado.title}</h1>
                         <div className={styles.lista__card__header}>
-                            <h1>{dado.title}</h1>
+                            <img src={dado.image} alt={dado.title} />
                             <ImportImage data={dado} />
                         </div>
-                        <img src={dado.image} alt={dado.title} />
                         <h3>{dado.category}</h3>
                         <h3>{dado.information}</h3>
                         <h3>{dado.unityValue}</h3>

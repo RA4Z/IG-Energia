@@ -29,6 +29,10 @@
         padding: 5px;
         width: 350px;
 
+        @media(max-width: $mobile) {
+            width: 100%;
+        }
+
         h1 {
             font-size: large;
         }
@@ -47,21 +51,21 @@
             align-items: center;
             gap: 5px;
         }
-    }
-}
 
-.export {
-    input[type="file"] {
-        display: none;
-    }
+        &__editIcon {
+            display: flex;
+            justify-content: flex-end;
 
-    label {
-        color: $secondary;
-        cursor: pointer;
-        transition: .5s;
-
-        &:hover {
-            color: $primary;
+            label {
+                color: $secondary;
+                position: absolute;
+                cursor: pointer;
+                transition: .5s;
+        
+                &:hover {
+                    color: $primary;
+                }
+            }
         }
     }
 }
