@@ -4,6 +4,7 @@ import { deleteImage, insertImage, updateImage } from 'services/table';
 import { ItensType } from 'types/sistema';
 
 interface Props {
+    setLoading: any
     data: ItensType,
 }
 
@@ -14,13 +15,15 @@ export default function ImportImage(props: Props) {
             const file = event.target.files[0];
 
             try {
+                props.setLoading(true)
                 const index = props.data.image.lastIndexOf('/');
                 const filename = props.data.image.substring(index + 1);
                 if (props.data.image !== '') await deleteImage(filename)
                 const url = await insertImage(file, `imagemId${props.data.id}.jpg`);
                 const result = await updateImage('Itens', props.data.id, url)
+                props.setLoading(false)
                 if (result === 'success') {
-                   window.location.reload()
+                    window.location.reload()
                 } else {
                     alert(`Ocorreu o erro ${result}`)
                 }

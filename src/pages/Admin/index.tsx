@@ -12,11 +12,13 @@ import { ItensDefault, ItensType } from "types/sistema"
 import ImportImage from "components/ImportImage"
 import EditItem from "./EditItem"
 import DeleteItem from "./DeleteItem"
+import Loading from "components/Loading"
 
 export default function Admin() {
     const navigate = useNavigate()
     const [data, setData] = useState<ItensType>(ItensDefault)
     const [dados, setDados] = useState<ItensType[]>([])
+    const [loading, setLoading] = useState(false)
     const [backup, setBackup] = useState<ItensType[]>([])
 
     useEffect(() => {
@@ -34,7 +36,9 @@ export default function Admin() {
     async function cadastrar() {
         if (algumCampoVazio(data)) return alert('Por favor, preencha todos os campos antes de realizar o cadastro.');
 
+        setLoading(true)
         const result = await insertData('Itens', data)
+        setLoading(false)
         if (result === 'success') {
             alert('Produto cadastrado com sucesso!')
             window.location.reload()
@@ -45,6 +49,7 @@ export default function Admin() {
 
     return (
         <div className={styles.container}>
+            <Loading open={loading} />
             <h1>Janela de Administração</h1>
             <div className={styles.form}>
                 {data !== null && Object.entries(data).map(([field, value]) => (
@@ -62,7 +67,7 @@ export default function Admin() {
                         <h1>{dado.title}</h1>
                         <div className={styles.lista__card__header}>
                             <img src={dado.image} alt={dado.title} />
-                            <ImportImage data={dado} />
+                            <ImportImage setLoading={setLoading} data={dado} />
                         </div>
                         <h3>{dado.category}</h3>
                         <h3>{dado.information}</h3>

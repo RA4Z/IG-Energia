@@ -3,9 +3,11 @@ import styles from './Login.module.scss';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from 'config/supabase';
+import Loading from 'components/Loading';
 
 export default function Login() {
     const [logar, setLogar] = useState({ email: '', senha: '' })
+    const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -30,7 +32,9 @@ export default function Login() {
     }
 
     async function userLogin() {
+        setLoading(true)
         const result = await login(logar.email, logar.senha)
+        setLoading(false)
         if (result === 'rvtech@tech.com') {
             navigate('/Admin')
         } else if (result === 'error') {
@@ -42,6 +46,7 @@ export default function Login() {
 
     return (
         <div className={styles.main_container}>
+            <Loading open={loading} />
             <div className={styles.container} id="container">
                 <div className={styles.sign_up_container}>
                     <div className={styles.formulario}>
