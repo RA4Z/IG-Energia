@@ -55,7 +55,7 @@ export default function Admin() {
             <BotaoHover text="Realizar Cadastro" onClick={() => cadastrar()} />
             <div className={styles.lista}>
                 {dados.map(dado => (
-                    <div className={styles.lista__card}>
+                    <div className={styles.lista__card} key={dado.title}>
                         <div className={styles.lista__card__header}>
                             <h1>{dado.title}</h1>
                             <ImportImage data={dado} />
