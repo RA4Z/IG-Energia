@@ -1,0 +1,20 @@
+@import "styles/variables";
+@import "styles/breakpoints";
+
+.deleteIcon {
+    display: flex;
+    border: none;
+    width: 100%;
+    justify-content: flex-start;
+
+    label {
+        color: darkred;
+        position: absolute;
+        cursor: pointer;
+        transition: .5s;
+
+        &:hover {
+            color: red;
+        }
+    }
+}

@@ -10,8 +10,8 @@ import { insertData } from "services/table"
 import { algumCampoVazio } from "utils"
 import { ItensDefault, ItensType } from "types/sistema"
 import ImportImage from "components/ImportImage"
-import EditIcon from '@mui/icons-material/Edit';
 import EditItem from "./EditItem"
+import DeleteItem from "./DeleteItem"
 
 export default function Admin() {
     const navigate = useNavigate()
@@ -57,6 +57,7 @@ export default function Admin() {
             <div className={styles.lista}>
                 {dados.map(dado => (
                     <div className={styles.lista__card} key={dado.title}>
+                        <DeleteItem {...dado} />
                         <EditItem {...dado} />
                         <h1>{dado.title}</h1>
                         <div className={styles.lista__card__header}>
