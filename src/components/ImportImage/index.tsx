@@ -32,9 +32,9 @@ export default function ImportImage(props: Props) {
     }
 
     return (
-        <input id='selecao-arquivo' type="file" accept="image/png, image/jpeg, image/jpg" onChange={handleFileChange} />
-        // <div className={styles.export} >
-        //     <label htmlFor='selecao-arquivo'><AddPhotoAlternateIcon fontSize='large' /></label>
-        // </div>
+        <div className={styles.export} >
+            <label htmlFor={`selecao-arquivo${props.data.id}`}><AddPhotoAlternateIcon fontSize='large' /></label>
+            <input className={styles.export} id={`selecao-arquivo${props.data.id}`} type="file" accept="image/png, image/jpeg, image/jpg" onChange={handleFileChange} />
+        </div>
     );
 }
