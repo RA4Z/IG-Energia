@@ -36,8 +36,8 @@ export default function Admin() {
 
         const result = await insertData('Itens', data)
         if (result === 'success') {
-            alert('Cadastrado com sucesso!')
-            setData(ItensDefault)
+            alert('Produto cadastrado com sucesso!')
+            window.location.reload()
         } else {
             alert(`Ocorreu o erro ${result}!`)
         }
