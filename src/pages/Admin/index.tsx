@@ -7,12 +7,13 @@ import styles from './Admin.module.scss'
 import { getData } from "services/table"
 import BotaoHover from "components/BotaoHover"
 import { insertData } from "services/table"
-import { algumCampoVazio } from "utils"
+import { algumCampoVazio, formatoMoneyBR } from "utils"
 import { ItensDefault, ItensType } from "types/sistema"
 import ImportImage from "components/ImportImage"
 import EditItem from "./EditItem"
 import DeleteItem from "./DeleteItem"
 import Loading from "components/Loading"
+import InputCurrency from "components/InputCurrency"
 
 export default function Admin() {
     const navigate = useNavigate()
@@ -53,16 +54,17 @@ export default function Admin() {
             <h1>Janela de Administração</h1>
             <div className={styles.form}>
                 {data !== null && Object.entries(data).map(([field, value]) => (
-                    (field !== 'id' && field !== 'image') &&
+                    (field !== 'id' && field !== 'image' && field !== 'unityValue') &&
                     <InputBox label={field} key={field}
                         texto={value} onChange={e => setData({ ...data, [field]: e.target.value })} />
                 ))}
+                <InputCurrency label='Preço' texto={data.unityValue.toString()} onChange={e => setData({ ...data, unityValue: e.target.value })} />
             </div>
             <BotaoHover text="Realizar Cadastro" onClick={() => cadastrar()} />
             <div className={styles.lista}>
                 {dados.map(dado => (
                     <div className={styles.lista__card} key={dado.title}>
-                        <DeleteItem {...dado} />
+                        <DeleteItem data={dado} setLoading={setLoading} />
                         <EditItem {...dado} />
                         <h1>{dado.title}</h1>
                         <div className={styles.lista__card__header}>
@@ -71,7 +73,7 @@ export default function Admin() {
                         </div>
                         <h3>{dado.category}</h3>
                         <h3>{dado.information}</h3>
-                        <h3>{dado.unityValue}</h3>
+                        <h3>{formatoMoneyBR.format(dado.unityValue)}</h3>
                     </div>
                 ))}
             </div>

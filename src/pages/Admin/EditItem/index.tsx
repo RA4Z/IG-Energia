@@ -10,6 +10,7 @@ import { ItensType } from 'types/sistema';
 import InputBox from 'components/InputBox';
 import BotaoHover from 'components/BotaoHover';
 import { updateData } from 'services/table';
+import InputCurrency from 'components/InputCurrency';
 
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & {
@@ -56,10 +57,11 @@ export default function EditItem(props: ItensType) {
                 <DialogTitle style={{ textAlign: 'center' }}>{`Edição de informações sobre o item de ID ${data.id}`}</DialogTitle>
                 <DialogContent className={styles.inputs}>
                     {data !== null && Object.entries(data).map(([field, value]) => (
-                        (field !== 'id' && field !== 'image') &&
+                        (field !== 'id' && field !== 'image' && field !== 'unityValue') &&
                         <InputBox label={field} key={field}
                             texto={value} onChange={e => setData({ ...data, [field]: e.target.value })} />
                     ))}
+                    <InputCurrency label='Preço' texto={data.unityValue.toString()} onChange={e => setData({ ...data, unityValue: e.target.value })} />
                     <BotaoHover text='Alterar dados' onClick={() => editarDados()} />
                 </DialogContent>
             </Dialog>

@@ -8,7 +8,7 @@ import { TransitionProps } from '@mui/material/transitions';
 import { ItensType } from 'types/sistema';
 import DeleteIcon from '@mui/icons-material/Delete';
 import BotaoHover from 'components/BotaoHover';
-import { deleteData } from 'services/table';
+import { deleteData, deleteImage } from 'services/table';
 
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & {
@@ -19,8 +19,12 @@ const Transition = React.forwardRef(function Transition(
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function DeleteItem(props: ItensType) {
-    const data: ItensType = props
+interface Props {
+    data:ItensType,
+    setLoading:any
+}
+
+export default function DeleteItem(props: Props) {
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -32,7 +36,11 @@ export default function DeleteItem(props: ItensType) {
     };
 
     async function deletarItem() {
-        const response = await deleteData('Itens', data.id)
+        props.setLoading(true)
+        const index = props.data.image.lastIndexOf('/');
+        const filename = props.data.image.substring(index + 1);
+        if (props.data.image !== '') await deleteImage(filename)
+        const response = await deleteData('Itens', props.data.id)
         if (response === 'success') {
             alert('Item deletado com sucesso!')
             window.location.reload()
@@ -52,7 +60,7 @@ export default function DeleteItem(props: ItensType) {
                 keepMounted
                 onClose={handleClose}
                 aria-describedby="alert-dialog-slide-description">
-                <DialogTitle style={{ textAlign: 'center' }}>{`Tem certeza de que deseja deletar o item de ID ${data.id} - ${data.title}?`}</DialogTitle>
+                <DialogTitle style={{ textAlign: 'center' }}>{`Tem certeza de que deseja deletar o item de ID ${props.data.id} - ${props.data.title}?`}</DialogTitle>
                 <DialogContent className={styles.inputs}>
                     <BotaoHover text='Deletar Item' onClick={() => deletarItem()} />
                 </DialogContent>
