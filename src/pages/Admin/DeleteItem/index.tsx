@@ -7,8 +7,8 @@ import styles from './DeleteItem.module.scss'
 import { TransitionProps } from '@mui/material/transitions';
 import { ItensType } from 'types/sistema';
 import DeleteIcon from '@mui/icons-material/Delete';
-import BotaoHover from 'components/BotaoHover';
 import { deleteData, deleteImage } from 'services/table';
+import Button from '@mui/material/Button';
 
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & {
@@ -20,8 +20,8 @@ const Transition = React.forwardRef(function Transition(
 });
 
 interface Props {
-    data:ItensType,
-    setLoading:any
+    data: ItensType,
+    setLoading: any
 }
 
 export default function DeleteItem(props: Props) {
@@ -42,7 +42,6 @@ export default function DeleteItem(props: Props) {
         if (props.data.image !== '') await deleteImage(filename)
         const response = await deleteData('Itens', props.data.id)
         if (response === 'success') {
-            alert('Item deletado com sucesso!')
             window.location.reload()
         } else {
             alert(`Ocorreu o erro ${response}!`)
@@ -62,7 +61,8 @@ export default function DeleteItem(props: Props) {
                 aria-describedby="alert-dialog-slide-description">
                 <DialogTitle style={{ textAlign: 'center' }}>{`Tem certeza de que deseja deletar o item de ID ${props.data.id} - ${props.data.title}?`}</DialogTitle>
                 <DialogContent className={styles.inputs}>
-                    <BotaoHover text='Deletar Item' onClick={() => deletarItem()} />
+                    <Button className={styles.inputs__cancelar} autoFocus onClick={handleClose}>Cancelar</Button>
+                    <Button className={styles.inputs__deletar} onClick={() => deletarItem()}  >Deletar Item</Button>
                 </DialogContent>
             </Dialog>
         </React.Fragment>

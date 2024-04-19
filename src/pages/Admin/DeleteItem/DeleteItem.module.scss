@@ -18,3 +18,27 @@
         }
     }
 }
+
+.inputs {
+    display: flex;
+    justify-content: flex-end;
+
+    &__cancelar {
+        color: $secondary;
+        transition: .3s;
+
+        &:hover {
+            filter: saturate(2);
+        }
+    }
+
+    &__deletar {
+        color: darkred;
+        transition: .3s;
+
+        &:hover {
+            color: red;
+            filter: saturate(2);
+        }
+    }
+}
