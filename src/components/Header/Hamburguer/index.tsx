@@ -3,8 +3,13 @@ import MenuItem from '@mui/material/MenuItem';
 import './styles.css'
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 import { useNavigate } from 'react-router-dom';
+import { admMail } from 'types/database';
 
-export default function Hamburguer() {
+interface Props {
+    user?: string
+}
+
+export default function Hamburguer(props: Props) {
     const navigate = useNavigate()
     return (
         <PopupState variant="popover" popupId="demo-popup-menu">
@@ -21,6 +26,7 @@ export default function Hamburguer() {
                     />
 
                     <Menu {...bindMenu(popupState)} onClick={() => { popupState.close(); const menuHamburguer = document.getElementById('menuHamburguer') as HTMLInputElement; menuHamburguer.checked = false }}>
+                        {props.user === admMail && <MenuItem onClick={() => { popupState.close(); navigate('/admin'); const menuHamburguer = document.getElementById('menuHamburguer') as HTMLInputElement; menuHamburguer.checked = false }}>Administração</MenuItem>}
                         <MenuItem onClick={() => { popupState.close(); navigate('/'); const menuHamburguer = document.getElementById('menuHamburguer') as HTMLInputElement; menuHamburguer.checked = false }}>Home</MenuItem>
                         <MenuItem onClick={() => { popupState.close(); navigate('/Catalogo'); const menuHamburguer = document.getElementById('menuHamburguer') as HTMLInputElement; menuHamburguer.checked = false }}>Catálogo</MenuItem>
                         <MenuItem onClick={() => { popupState.close(); navigate('/Carrinho'); const menuHamburguer = document.getElementById('menuHamburguer') as HTMLInputElement; menuHamburguer.checked = false }}>Carrinho</MenuItem>

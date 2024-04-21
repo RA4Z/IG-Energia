@@ -33,6 +33,7 @@ function Footer() {
         await logoff()
         setUser('')
         navigate('/Login')
+        window.location.reload()
     }
     return (
         <>
