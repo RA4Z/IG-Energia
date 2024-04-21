@@ -2,8 +2,9 @@ import styles from './Header.module.scss'
 import Logotipo from 'assets/logo.svg'
 import { useLocation, useNavigate } from 'react-router-dom';
 import Hamburguer from './Hamburguer';
+import { memo } from 'react';
 
-export default function Header() {
+function Header() {
     const navigate = useNavigate()
     const location = useLocation();
 
@@ -31,3 +32,4 @@ export default function Header() {
         </nav>
     )
 }
+export default memo(Header)

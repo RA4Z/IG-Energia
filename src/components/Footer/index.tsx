@@ -9,13 +9,13 @@ import linkedin from 'assets/linkedin.svg'
 
 import { logoff } from 'services/auth'
 import { useNavigate } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 import { supabase } from 'config/supabase'
 import BotaoHover from 'components/BotaoHover'
 import Maps from 'components/Maps'
 import { phoneNumber } from 'types/database'
 
-export default function Footer() {
+function Footer() {
     const navigate = useNavigate()
     const [user, setUser] = useState('')
 
@@ -68,3 +68,4 @@ export default function Footer() {
         </>
     )
 }
+export default memo(Footer)

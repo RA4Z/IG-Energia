@@ -1,7 +1,8 @@
+import { memo } from 'react'
 import styles from './Homepage.module.scss'
 import Carrossel from 'components/Carrossel'
 
-export default function Homepage() {
+function Homepage() {
     return (
         <div className={styles.container}>
             <div className={styles.carousel}>
@@ -10,3 +11,4 @@ export default function Homepage() {
         </div>
     )
 }
+export default memo(Homepage)

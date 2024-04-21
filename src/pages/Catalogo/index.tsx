@@ -1,5 +1,5 @@
 import ProductCard from 'components/ProductCard';
-import { useEffect, useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 import { CarrinhoType, ItensType } from 'types/sistema'
 import styles from './Catalogo.module.scss'
 import Filtro from './Filtro';
@@ -9,7 +9,7 @@ import Buscador from './Buscador';
 import { Divider } from '@mui/material';
 import { tablePath } from 'types/database';
 
-export default function Catalogo() {
+function Catalogo() {
     const [items, setItems] = useState<CarrinhoType[]>([])
     const [filtro, setFiltro] = useState<string>('');
     const [busca, setBusca] = useState('');
@@ -91,3 +91,4 @@ export default function Catalogo() {
         </div>
     )
 }
+export default memo(Catalogo)

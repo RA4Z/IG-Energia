@@ -3,12 +3,12 @@ import Fechar from 'assets/fechar.svg'
 import styles from './Carrinho.module.scss'
 import SelectNumber from 'components/SelectNumber'
 import { formatoMoneyBR } from 'utils'
-import { useEffect, useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 import InputOption from 'components/InputOption'
 import Whatsapp from 'components/Whatsapp'
 import { CarrinhoType } from 'types/sistema'
 
-export default function Carrinho() {
+function Carrinho() {
     const [envio, setEnvio] = useState('')
     const [items, setItems] = useState<CarrinhoType[]>([])
     const [deletando, setDeletando] = useState(false)
@@ -99,3 +99,4 @@ Muito obrigado!`}
         </div>
     )
 }
+export default memo(Carrinho)

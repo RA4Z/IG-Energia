@@ -1,5 +1,5 @@
 import { supabase } from "config/supabase"
-import { useEffect, useState } from "react"
+import { memo, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import InputBox from "components/InputBox"
 
@@ -16,7 +16,7 @@ import Loading from "components/Loading"
 import InputCurrency from "components/InputCurrency"
 import { admMail, tablePath } from "types/database"
 
-export default function Admin() {
+function Admin() {
     const navigate = useNavigate()
     const [data, setData] = useState<ItensType>(ItensDefault)
     const [dados, setDados] = useState<ItensType[]>([])
@@ -84,3 +84,4 @@ export default function Admin() {
         </div>
     )
 }
+export default memo(Admin)

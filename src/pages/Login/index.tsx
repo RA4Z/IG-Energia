@@ -1,12 +1,12 @@
 import { login } from 'services/auth';
 import styles from './Login.module.scss';
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from 'config/supabase';
 import Loading from 'components/Loading';
 import { admMail } from 'types/database';
 
-export default function Login() {
+function Login() {
     const [logar, setLogar] = useState({ email: '', senha: '' })
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
@@ -92,3 +92,4 @@ export default function Login() {
         </div>
     )
 }
+export default memo(Login)
