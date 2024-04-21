@@ -9,6 +9,7 @@ import { ItensType } from 'types/sistema';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { deleteData, deleteImage } from 'services/table';
 import Button from '@mui/material/Button';
+import { tablePath } from 'types/database';
 
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & {
@@ -40,7 +41,7 @@ export default function DeleteItem(props: Props) {
         const index = props.data.image.lastIndexOf('/');
         const filename = props.data.image.substring(index + 1);
         if (props.data.image !== '') await deleteImage(filename)
-        const response = await deleteData('Itens', props.data.id)
+        const response = await deleteData(tablePath, props.data.id)
         if (response === 'success') {
             window.location.reload()
         } else {

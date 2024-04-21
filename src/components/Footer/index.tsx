@@ -13,6 +13,7 @@ import { useEffect, useState } from 'react'
 import { supabase } from 'config/supabase'
 import BotaoHover from 'components/BotaoHover'
 import Maps from 'components/Maps'
+import { phoneNumber } from 'types/database'
 
 export default function Footer() {
     const navigate = useNavigate()
@@ -22,7 +23,7 @@ export default function Footer() {
         async function getUserLogged() {
             const user = (await supabase.auth.getUser()).data.user?.email
             if (user !== '' && user !== undefined) {
-                if (user === 'rvtech@tech.com') setUser(user)
+                setUser(user)
             }
         }
         getUserLogged()
@@ -47,7 +48,7 @@ export default function Footer() {
                     <Divider style={{ background: 'white' }} />
                     <div className={styles.container__icos}>
                         <a href='https://www.facebook.com'><img src={facebook} alt='Facebook' title='Nosso Facebook' className={styles.container__icos__icon} /></a>
-                        <a href='https://wa.me/5547988292846?text=Olá, estou entrando em contato pelo site!' target='_blank' rel="noreferrer"><img src={whatsapp} alt='Whatsapp' title='Nosso Whatsapp' className={styles.container__icos__icon} /></a>
+                        <a href={`https://wa.me/${phoneNumber}?text=Olá, estou entrando em contato pelo site!`} target='_blank' rel="noreferrer"><img src={whatsapp} alt='Whatsapp' title='Nosso Whatsapp' className={styles.container__icos__icon} /></a>
                         <a href='https://www.instagram.com'><img src={instagram} alt='Instagram' title='Nosso Instagram' className={styles.container__icos__icon} /></a>
                         <a href='https://www.linkedin.com'><img src={linkedin} alt='LinkedIn' title='Nosso LinkedIn' className={styles.container__icos__icon} /></a>
                     </div>

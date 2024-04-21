@@ -1,7 +1,8 @@
 import { supabase } from "config/supabase";
+import { imagesPath } from "types/database";
 import { ItensType } from "types/sistema";
 
-export async function getData(database: string, setDados: any, setBackup: any) {
+export async function getData(database: string, setDados: any, setBackup?: any) {
     let { data: dados, error } = await supabase
         .from(database)
         .select('*')
@@ -9,7 +10,7 @@ export async function getData(database: string, setDados: any, setBackup: any) {
         return error;
     }
     setDados(dados)
-    setBackup(dados)
+    if (setBackup) setBackup(dados)
     return dados;
 }
 
@@ -66,7 +67,7 @@ export async function insertImage(file: any, filename: string) {
     const { error } = await supabase
         .storage
         .from('images')
-        .upload(`/Products/${momento}${filename}`, file, {
+        .upload(`/${imagesPath}/${momento}${filename}`, file, {
             cacheControl: '3600', // Set cache expiration (optional)
             upsert: true, // Overwrite existing file with same name (optional)
         });
@@ -75,14 +76,14 @@ export async function insertImage(file: any, filename: string) {
         console.error('Upload error:', error); // Log the error for debugging
         return Promise.reject(error); // Reject the promise with the error
     }
-    return `https://eljilalbzabmkahtvfkv.supabase.co/storage/v1/object/public/images/Products/${momento}${filename}`
+    return `https://eljilalbzabmkahtvfkv.supabase.co/storage/v1/object/public/images/${imagesPath}/${momento}${filename}`
 }
 
 export async function deleteImage(filename: string) {
     const { error } = await supabase
         .storage
         .from('images')
-        .remove([`Products/${filename}`])
+        .remove([`${imagesPath}/${filename}`])
     if (error) {
         console.error('Delete error:', error); // Log the error for debugging
         return Promise.reject(error); // Reject the promise with the error

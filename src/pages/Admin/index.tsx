@@ -14,13 +14,13 @@ import EditItem from "./EditItem"
 import DeleteItem from "./DeleteItem"
 import Loading from "components/Loading"
 import InputCurrency from "components/InputCurrency"
+import { admMail, tablePath } from "types/database"
 
 export default function Admin() {
     const navigate = useNavigate()
     const [data, setData] = useState<ItensType>(ItensDefault)
     const [dados, setDados] = useState<ItensType[]>([])
     const [loading, setLoading] = useState(false)
-    const [backup, setBackup] = useState<ItensType[]>([])
 
     useEffect(() => {
         async function getUserLogged() {
@@ -28,7 +28,11 @@ export default function Admin() {
             if (user === undefined) {
                 navigate('/Login')
             } else {
-                await getData('Itens', setDados, setBackup)
+                if(user === admMail) {
+                    await getData(tablePath, setDados)
+                } else {
+                    navigate('/')
+                }
             }
         }
         getUserLogged()
@@ -38,7 +42,7 @@ export default function Admin() {
         if (algumCampoVazio(data)) return alert('Por favor, preencha todos os campos antes de realizar o cadastro.');
 
         setLoading(true)
-        const result = await insertData('Itens', data)
+        const result = await insertData(tablePath, data)
         setLoading(false)
         if (result === 'success') {
             alert('Produto cadastrado com sucesso!')

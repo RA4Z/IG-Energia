@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from 'config/supabase';
 import Loading from 'components/Loading';
+import { admMail } from 'types/database';
 
 export default function Login() {
     const [logar, setLogar] = useState({ email: '', senha: '' })
@@ -14,7 +15,7 @@ export default function Login() {
         async function getUserLogged() {
             const user = (await supabase.auth.getUser()).data.user?.email
             if (user !== undefined) {
-                if (user === 'rvtech@tech.com') {
+                if (user === admMail) {
                     navigate('/Admin')
                 } else {
                     navigate('/')

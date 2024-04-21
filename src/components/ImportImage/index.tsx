@@ -1,6 +1,7 @@
 import styles from './ImportImage.module.scss';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import { deleteImage, insertImage, updateImage } from 'services/table';
+import { tablePath } from 'types/database';
 import { ItensType } from 'types/sistema';
 
 interface Props {
@@ -20,7 +21,7 @@ export default function ImportImage(props: Props) {
                 const filename = props.data.image.substring(index + 1);
                 if (props.data.image !== '') await deleteImage(filename)
                 const url = await insertImage(file, `imagemId${props.data.id}.jpg`);
-                const result = await updateImage('Itens', props.data.id, url)
+                const result = await updateImage(tablePath, props.data.id, url)
                 props.setLoading(false)
                 if (result === 'success') {
                     window.location.reload()
