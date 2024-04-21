@@ -36,7 +36,7 @@ function Login() {
         setLoading(true)
         const result = await login(logar.email, logar.senha)
         setLoading(false)
-        if (result === 'rvtech@tech.com') {
+        if (result === admMail) {
             navigate('/Admin')
             window.location.reload()
         } else if (result === 'error') {
