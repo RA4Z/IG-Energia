@@ -1,0 +1,92 @@
+//variables
+$basic-dark-color: #212121;
+$basic-light-color: #fff;
+$fb-color: #3b5998;
+$tw-color: #00aced;
+$dribbble: #ea4c89;
+$pinterest: #cb2027;
+$insta: #bc2a8d;
+$whats: green;
+$in: #007bb6;
+$vimeo: #1ab7ea;
+$border-radius: 10px;
+$font-size: 25px;
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+}
+
+.effect__aeneas {
+  display: flex;
+
+  a {
+    text-decoration: none !important;
+    color: $basic-light-color;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: $border-radius;
+    font-size: $font-size;
+    overflow: hidden;
+    position: relative;
+
+    i {
+      position: relative;
+      z-index: 3;
+    }
+
+    &.fb {
+      background-color: $fb-color;
+    }
+
+    &.tw {
+      background-color: $tw-color;
+    }
+
+    &.dribbble {
+      background-color: $dribbble;
+    }
+
+    &.pinterest {
+      background-color: $pinterest;
+    }
+
+    &.insta {
+      background-color: $insta;
+    }
+
+    &.whatsapp {
+      background-color: $whats;
+    }
+
+    &.in {
+      background-color: $in;
+    }
+
+    &.vimeo {
+      background-color: $vimeo;
+    }
+  }
+
+  a {
+    transition: transform 0.4s linear 0s, border-top-left-radius 0.1s linear 0s, border-top-right-radius 0.1s linear 0.1s, border-bottom-right-radius 0.1s linear 0.2s, border-bottom-left-radius 0.1s linear 0.3s;
+
+    i {
+      transition: transform 0.4s linear 0s;
+    }
+
+    &:hover {
+      transform: rotate(360deg);
+      border-radius: 50%;
+
+      i {
+        transform: rotate(-360deg);
+      }
+    }
+  }
+}

@@ -1,19 +1,13 @@
 import { Divider } from '@mui/material'
 import styles from './Footer.module.scss'
 import Logo from 'assets/logo.svg'
-
-import whatsapp from 'assets/whatsapp.svg'
-import facebook from 'assets/facebook.svg'
-import instagram from 'assets/instagram.svg'
-import linkedin from 'assets/linkedin.svg'
-
 import { logoff } from 'services/auth'
 import { useNavigate } from 'react-router-dom'
 import { memo, useEffect, useState } from 'react'
 import { supabase } from 'config/supabase'
 import BotaoHover from 'components/BotaoHover'
 import Maps from 'components/Maps'
-import { phoneNumber } from 'types/database'
+import Social from './Social'
 
 function Footer() {
     const navigate = useNavigate()
@@ -48,10 +42,7 @@ function Footer() {
                     <button className={styles.container__button}>Default Webpage</button>
                     <Divider style={{ background: 'white' }} />
                     <div className={styles.container__icos}>
-                        <a href='https://www.facebook.com'><img src={facebook} alt='Facebook' title='Nosso Facebook' className={styles.container__icos__icon} /></a>
-                        <a href={`https://wa.me/${phoneNumber}?text=Olá, estou entrando em contato pelo site!`} target='_blank' rel="noreferrer"><img src={whatsapp} alt='Whatsapp' title='Nosso Whatsapp' className={styles.container__icos__icon} /></a>
-                        <a href='https://www.instagram.com'><img src={instagram} alt='Instagram' title='Nosso Instagram' className={styles.container__icos__icon} /></a>
-                        <a href='https://www.linkedin.com'><img src={linkedin} alt='LinkedIn' title='Nosso LinkedIn' className={styles.container__icos__icon} /></a>
+                        <Social />
                     </div>
                 </div>
 

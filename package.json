@@ -17,6 +17,7 @@
     "@types/react": "^18.2.74",
     "@types/react-dom": "^18.2.24",
     "classnames": "^2.5.1",
+    "font-awesome": "^4.7.0",
     "material-ui-popup-state": "^5.1.0",
     "ol": "^9.1.0",
     "react": "^18.2.0",
