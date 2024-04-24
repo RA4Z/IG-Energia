@@ -11,7 +11,7 @@
     &__filtro {
         align-items: center;
         background-color: $backgrounds;
-        border: 1px solid $shadow;
+        border: 1px solid #444444;
         border-radius: 4px;
         display: flex;
         font-size: 1.25rem;
@@ -23,13 +23,17 @@
         transition: .2s;
 
         &--ativo {
-            background-color: $secondary;
-            color: white;
+            border-color: #6aa6d8;
+            color: #5795c7;
+            background-color: #f0f8ff;
         }
 
         &:hover {
             cursor: pointer;
-            filter: saturate(1) drop-shadow(2px 2px 2px $shadow);
+            border-color: #6aa6d8;
+            color: #5795c7;
+            background-color: #f0f8ff;
+            filter: saturate(2);
         }
     }
 }

@@ -4,7 +4,7 @@
 .ordenador {
     align-items: center;
     background-color: $backgrounds;
-    border: 1px solid $shadow;
+    border: 1px solid #444444;
     color: $texto;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
@@ -23,8 +23,9 @@
     }
 
     &--ativo {
-        background-color: $backgrounds;
-        color: $primary;
+        border-color: #6aa6d8;
+        color: #5795c7;
+        background-color: #f0f8ff;
     }
 
     &__options {
@@ -53,9 +54,10 @@
 
         &:hover,
         &--ativo {
-            background-color: $primary;
             cursor: pointer;
-            color: white;
+            border-color: #6aa6d8;
+            color: #5795c7;
+            background-color: #f0f8ff;
         }
     }
 }
