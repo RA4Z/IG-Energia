@@ -1,0 +1,76 @@
+@import "styles/variables";
+@import "styles/breakpoints";
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+}
+
+.selecionar {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    gap: 10px;
+    flex-wrap: wrap;
+
+    &__horario {
+        padding: 10px;
+
+        ul {
+            display: flex;
+            width: 250px;
+            flex-wrap: wrap;
+            gap: 5px;
+
+            .blocked {
+                list-style: none;
+                background-color: $backgrounds;
+                color: $texto_secundario;
+                font-weight: bold;
+                font-size: 1.25rem;
+                border: 1px solid $texto_secundario;
+                border-radius: 5px;
+                padding: 5px;
+                text-align: center;
+            }
+
+            .list {
+                list-style: none;
+                background-color: $backgrounds;
+                color: $texto;
+                font-weight: bold;
+                font-size: 1.25rem;
+                border: 1px solid #444444;
+                border-radius: 5px;
+                padding: 5px;
+                text-align: center;
+                transition: .2s;
+
+                &--ativo {
+                    border-color: #6aa6d8;
+                    color: #5795c7;
+                    background-color: #f0f8ff;
+                }
+
+                &:hover {
+                    cursor: pointer;
+                    border-color: #6aa6d8;
+                    color: #5795c7;
+                    background-color: #f0f8ff;
+                    filter: saturate(2);
+                }
+            }
+
+            @media(max-width: $mobile) {
+                width: 100%;
+            }
+        }
+    }
+}
+
+.calendar {
+    border-radius: 5px 0px 0px 5px;
+    box-shadow: 1px 1px 5px #555353;
+}
