@@ -8,7 +8,7 @@ import styles from './EditItem.module.scss'
 import { TransitionProps } from '@mui/material/transitions';
 import { ItensType } from 'types/sistema';
 import InputBox from 'components/InputBox';
-import BotaoHover from 'components/BotaoHover';
+import BotaoMain from 'components/BotaoMain';
 import { updateData } from 'services/table';
 import InputCurrency from 'components/InputCurrency';
 import { tablePath } from 'types/database';
@@ -45,7 +45,7 @@ export default function EditItem(props: ItensType) {
     }
 
     return (
-        <React.Fragment>
+        <>
             <button className={styles.editIcon}>
                 <label onClick={handleClickOpen}><EditIcon /></label>
             </button>
@@ -63,9 +63,9 @@ export default function EditItem(props: ItensType) {
                             texto={value} onChange={e => setData({ ...data, [field]: e.target.value })} />
                     ))}
                     <InputCurrency label='Preço' texto={data.unityValue.toString()} onChange={e => setData({ ...data, unityValue: e.target.value })} />
-                    <BotaoHover text='Alterar dados' onClick={() => editarDados()} />
+                    <BotaoMain text='Alterar dados' onClick={() => editarDados()} />
                 </DialogContent>
             </Dialog>
-        </React.Fragment>
+        </>
     );
 }

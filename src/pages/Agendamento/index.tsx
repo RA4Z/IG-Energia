@@ -6,6 +6,7 @@ import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { useState } from 'react';
 import classNames from 'classnames';
 import { horariosAtendimento } from './horarios';
+import BotaoMain from 'components/BotaoMain';
 
 export default function Agendamento() {
     const [diaAgendado, setdiaAgendado] = useState(dayjs());
@@ -14,6 +15,9 @@ export default function Agendamento() {
     function selecionarHorario(horario: any) {
         if (horarioAgendado === horario) return setHorarioAgendado('');
         return setHorarioAgendado(horario);
+    }
+    async function fazerAgendamento() {
+
     }
     return (
         <div className={styles.container}>
@@ -37,6 +41,7 @@ export default function Agendamento() {
                             </li>
                         ))}
                     </ul>
+                    <BotaoMain text='Agendar Horário' onClick={() => fazerAgendamento} />
                 </div>
             </div>
         </div>

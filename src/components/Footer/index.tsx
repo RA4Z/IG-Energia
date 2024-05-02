@@ -5,7 +5,7 @@ import { logoff } from 'services/auth'
 import { useNavigate } from 'react-router-dom'
 import { memo, useEffect, useState } from 'react'
 import { supabase } from 'config/supabase'
-import BotaoHover from 'components/BotaoHover'
+import BotaoMain from 'components/BotaoMain'
 import Maps from 'components/Maps'
 import Social from './Social'
 
@@ -37,7 +37,7 @@ function Footer() {
                 </div>
 
                 <div className={styles.container__dev}>
-                    {user !== '' && <BotaoHover text='Deslogar' onClick={() => logout()} />}
+                    {user !== '' && <BotaoMain text='Deslogar' onClick={() => logout()} />}
 
                     <button className={styles.container__button}>Default Webpage</button>
                     <Divider style={{ background: 'white' }} />

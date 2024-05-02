@@ -5,7 +5,7 @@ import InputBox from "components/InputBox"
 
 import styles from './Admin.module.scss'
 import { getData } from "services/table"
-import BotaoHover from "components/BotaoHover"
+import BotaoMain from "components/BotaoMain"
 import { insertData } from "services/table"
 import { algumCampoVazio, formatoMoneyBR } from "utils"
 import { ItensDefault, ItensType } from "types/sistema"
@@ -64,7 +64,7 @@ function Admin() {
                 ))}
                 <InputCurrency label='Preço' texto={data.unityValue.toString()} onChange={e => setData({ ...data, unityValue: e.target.value })} />
             </div>
-            <BotaoHover text="Realizar Cadastro" onClick={() => cadastrar()} />
+            <BotaoMain text="Realizar Cadastro" onClick={() => cadastrar()} />
             <div className={styles.lista}>
                 {dados.map(dado => (
                     <div className={styles.lista__card} key={dado.title}>
