@@ -22,8 +22,13 @@
     &__horario {
         padding: 10px;
 
+        p {
+            font-size: 1.1rem;
+        }
+
         ul {
             display: flex;
+            justify-content: center;
             width: 250px;
             flex-wrap: wrap;
             gap: 5px;

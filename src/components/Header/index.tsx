@@ -40,6 +40,7 @@ function Header() {
                 {user === admMail && <li><button className={location.pathname.toLowerCase() === '/admin' ? styles.buttonBlock : styles.buttonNav} onClick={() => travelTo('/admin')}>Admin</button></li>}
                 <li><button className={location.pathname.toLowerCase() === '/' ? styles.buttonBlock : styles.buttonNav} onClick={() => travelTo('/')}>Home</button></li>
                 <li><button className={location.pathname.toLowerCase() === '/catalogo' ? styles.buttonBlock : styles.buttonNav} onClick={() => travelTo('/Catalogo')}>Catálogo</button></li>
+                <li><button className={location.pathname.toLowerCase() === '/agendamento' ? styles.buttonBlock : styles.buttonNav} onClick={() => travelTo('/Agendamento')}>Agendamento</button></li>
                 <li><button className={location.pathname.toLowerCase() === '/carrinho' ? styles.buttonBlock : styles.buttonNav} onClick={() => travelTo('/Carrinho')}>Carrinho</button></li>
                 <li><button className={location.pathname.toLowerCase() === '/sobre' ? styles.buttonBlock : styles.buttonNav} onClick={() => travelTo('/Sobre')}>Sobre nós</button></li>
             </ul>

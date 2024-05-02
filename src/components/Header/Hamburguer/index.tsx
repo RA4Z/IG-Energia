@@ -42,6 +42,7 @@ export default function Hamburguer(props: Props) {
                         {props.user === admMail && <MenuItem onClick={() => close(popupState, '/Admin')}>Administração</MenuItem>}
                         <MenuItem onClick={() => close(popupState, '/')}>Home</MenuItem>
                         <MenuItem onClick={() => close(popupState, '/Catalogo')}>Catálogo</MenuItem>
+                        <MenuItem onClick={() => close(popupState, '/Agendamento')}>Agendamento</MenuItem>
                         <MenuItem onClick={() => close(popupState, '/Carrinho')}>Carrinho</MenuItem>
                         <MenuItem onClick={() => close(popupState, '/Sobre')}>Sobre nós</MenuItem>
                     </Menu>
