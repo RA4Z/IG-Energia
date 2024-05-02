@@ -16,8 +16,13 @@ export default function Agendamento() {
         if (horarioAgendado === horario) return setHorarioAgendado('');
         return setHorarioAgendado(horario);
     }
-    async function fazerAgendamento() {
 
+    async function fazerAgendamento() {
+        if (horarioAgendado !== '') {
+            alert(`Atendimento agendado com sucesso para o dia ${dayjs(diaAgendado).format('YYYY-MM-DD')} no horário ${horarioAgendado}`)
+        } else {
+            alert('Selecione algum horário disponível!')
+        }
     }
     return (
         <div className={styles.container}>
@@ -26,7 +31,7 @@ export default function Agendamento() {
                     <DateCalendar className={styles.calendar}
                         minDate={dayjs()}
                         value={diaAgendado}
-                        onChange={(newValue) => setdiaAgendado(newValue)} />
+                        onChange={(newValue) => { setdiaAgendado(newValue); setHorarioAgendado('') }} />
                 </LocalizationProvider>
                 <div className={styles.selecionar__horario}>
                     <p>Selecione o horário desejado de atendimento:</p>
@@ -41,7 +46,7 @@ export default function Agendamento() {
                             </li>
                         ))}
                     </ul>
-                    <BotaoMain text='Agendar Horário' onClick={() => fazerAgendamento} />
+                    <BotaoMain text='Agendar Horário' onClick={() => fazerAgendamento()} />
                 </div>
             </div>
         </div>
