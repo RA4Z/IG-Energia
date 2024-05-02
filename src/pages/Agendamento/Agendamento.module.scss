@@ -68,11 +68,13 @@
                 }
 
                 &:hover {
-                    cursor: pointer;
-                    border-color: #6aa6d8;
-                    color: #5795c7;
-                    background-color: #f0f8ff;
-                    filter: saturate(2);
+                    @media(min-width:$tablet) {
+                        cursor: pointer;
+                        border-color: #6aa6d8;
+                        color: #5795c7;
+                        background-color: #f0f8ff;
+                        filter: saturate(2);
+                    }
                 }
             }
 
