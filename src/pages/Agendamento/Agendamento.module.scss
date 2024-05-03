@@ -5,13 +5,57 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    gap: 5vh;
     min-height: 70vh;
 }
 
 .tipo {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 10px;
+
+    .blocked {
+        list-style: none;
+        background-color: $backgrounds;
+        color: $texto_secundario;
+        font-weight: bold;
+        font-size: 1.25rem;
+        border: 1px solid $texto_secundario;
+        border-radius: 5px;
+        padding: 5px;
+        text-align: center;
+    }
+
+    .list {
+        list-style: none;
+        background-color: $backgrounds;
+        color: $texto;
+        font-weight: bold;
+        font-size: 1.25rem;
+        border: 1px solid #444444;
+        border-radius: 5px;
+        padding: 5px;
+        text-align: center;
+        transition: .2s;
+
+        &--ativo {
+            border-color: #6aa6d8;
+            color: #5795c7;
+            background-color: #f0f8ff;
+        }
+
+        &:hover {
+            @media(min-width:$tablet) {
+                cursor: pointer;
+                border-color: #6aa6d8;
+                color: #5795c7;
+                background-color: #f0f8ff;
+                filter: saturate(2);
+            }
+        }
+    }
 }
 
 .selecionar {
@@ -35,13 +79,10 @@
         ul {
             display: flex;
             justify-content: center;
-            width: 250px;
             flex-wrap: wrap;
+            width: 100%;
+            max-width: 300px;
             gap: 5px;
-
-            @media(max-width:300px) {
-                width: 100%;
-            }
 
             .blocked {
                 list-style: none;
@@ -92,4 +133,8 @@
 .calendar {
     border-radius: 5px 0px 0px 5px;
     box-shadow: 1px 1px 5px #555353;
+
+    @media(max-width: 350px) {
+        width: 100%;
+    }
 }

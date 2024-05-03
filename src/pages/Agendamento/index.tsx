@@ -11,52 +11,76 @@ import BotaoMain from 'components/BotaoMain';
 export default function Agendamento() {
     const [diaAgendado, setdiaAgendado] = useState(dayjs());
     const [horarioAgendado, setHorarioAgendado] = useState('')
+    const [tipoAgendamento, setTipoAgendamento] = useState([
+        {
+            nome: 'Fazer a Barba',
+            selecionado: false
+        },
+        {
+            nome: 'Corte de Cabelo',
+            selecionado: false
+        },
+        {
+            nome: 'Sobrancelha',
+            selecionado: false
+        },
+        {
+            nome: 'Outro',
+            selecionado: false
+        },
+    ])
 
     function selecionarHorario(horario: any) {
         if (horarioAgendado === horario) return setHorarioAgendado('');
         return setHorarioAgendado(horario);
     }
 
+    function alterarTipoAgendamento(index: any) {
+        const updatedItems = [...tipoAgendamento];
+        updatedItems[index].selecionado = !updatedItems[index].selecionado;
+        setTipoAgendamento(updatedItems)
+    }
+
     async function fazerAgendamento() {
-        if (horarioAgendado !== '') {
-            alert(`Atendimento agendado com sucesso para o dia ${dayjs(diaAgendado).format('YYYY-MM-DD')} no horário ${horarioAgendado}`)
-        } else {
-            alert('Selecione algum horário disponível!')
-        }
+        if (!tipoAgendamento.some(item => item.selecionado)) return alert('Selecione algum dos tipos de atendimento disponíveis!')
+        if (horarioAgendado === '') return alert('Selecione algum horário disponível!')
+        alert(`Atendimento agendado com sucesso para o dia ${dayjs(diaAgendado).format('YYYY-MM-DD')} no horário ${horarioAgendado}`)
     }
     return (
         <div className={styles.container}>
-            <>
-                <div className={styles.tipo}>
-                    <button>Tipo 1</button>
-                    <button>Tipo 2</button>
-                    <button>Tipo 3</button>
-                    <button>Tipo 4</button>
+            <div className={styles.tipo}>
+                {tipoAgendamento.map((tipo, index) => (
+                    <button className={classNames({
+                        [styles.list]: true,
+                        [styles['list--ativo']]: tipo.selecionado
+                    })} key={index} onClick={() => alterarTipoAgendamento(index)}>
+                        {tipo.nome}
+                    </button>
+                ))}
+            </div>
+            <div className={styles.selecionar}>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DateCalendar className={styles.calendar}
+                        minDate={dayjs()}
+                        value={diaAgendado}
+                        onChange={(newValue) => { setdiaAgendado(newValue); setHorarioAgendado('') }} />
+                </LocalizationProvider>
+                <div className={styles.selecionar__horario}>
+                    <p>Selecione o horário desejado de atendimento:</p>
+                    <ul>
+                        {horariosAtendimento.map((atendimento, index) => (
+                            <li className={classNames({
+                                [styles.blocked]: !atendimento.disponivel,
+                                [styles.list]: atendimento.disponivel,
+                                [styles['list--ativo']]: horarioAgendado === atendimento.horario
+                            })} key={index} onClick={() => atendimento.disponivel && selecionarHorario(atendimento.horario)}>
+                                {atendimento.horario}
+                            </li>
+                        ))}
+                    </ul>
+                    <BotaoMain text='Agendar Horário' onClick={() => fazerAgendamento()} />
                 </div>
-                <div className={styles.selecionar}>
-                    <LocalizationProvider dateAdapter={AdapterDayjs}>
-                        <DateCalendar className={styles.calendar}
-                            minDate={dayjs()}
-                            value={diaAgendado}
-                            onChange={(newValue) => { setdiaAgendado(newValue); setHorarioAgendado('') }} />
-                    </LocalizationProvider>
-                    <div className={styles.selecionar__horario}>
-                        <p>Selecione o horário desejado de atendimento:</p>
-                        <ul>
-                            {horariosAtendimento.map((atendimento, index) => (
-                                <li className={classNames({
-                                    [styles.blocked]: !atendimento.disponivel,
-                                    [styles.list]: atendimento.disponivel,
-                                    [styles['list--ativo']]: horarioAgendado === atendimento.horario
-                                })} key={index} onClick={() => atendimento.disponivel && selecionarHorario(atendimento.horario)}>
-                                    {atendimento.horario}
-                                </li>
-                            ))}
-                        </ul>
-                        <BotaoMain text='Agendar Horário' onClick={() => fazerAgendamento()} />
-                    </div>
-                </div>
-            </>
+            </div>
         </div>
     )
 }
