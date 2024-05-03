@@ -10,7 +10,6 @@ export const horariosDisponiveis = {
         { horario: '20:30', disponivel: true },
         { horario: '21:00', disponivel: true },
         { horario: '21:30', disponivel: true },
-        { horario: '22:00', disponivel: true },
     ],
     final_semana: [
         { horario: '08:00', disponivel: true },
@@ -34,85 +33,20 @@ export const horariosDisponiveis = {
     ]
 }
 
-export const horariosAtendimento = [
+export const horariosReservados = [
     {
-        horario: '08:00',
-        disponivel: true
+        dia: '2024-05-03',
+        horario:'20:00',
+        nome: 'Robert Aron Zimmermann'
     },
     {
-        horario: '08:30',
-        disponivel: true
+        dia: '2024-05-10',
+        horario:'20:30',
+        nome: 'Tuts Works'
     },
     {
-        horario: '09:00',
-        disponivel: false
-    },
-    {
-        horario: '09:30',
-        disponivel: true
-    },
-    {
-        horario: '10:00',
-        disponivel: true
-    },
-    {
-        horario: '10:30',
-        disponivel: true
-    },
-    {
-        horario: '11:00',
-        disponivel: true
-    },
-    {
-        horario: '11:30',
-        disponivel: false
-    },
-    {
-        horario: '12:00',
-        disponivel: false
-    },
-    {
-        horario: '12:30',
-        disponivel: false
-    },
-    {
-        horario: '13:00',
-        disponivel: false
-    },
-    {
-        horario: '13:30',
-        disponivel: false
-    },
-    {
-        horario: '14:00',
-        disponivel: false
-    },
-    {
-        horario: '14:30',
-        disponivel: true
-    },
-    {
-        horario: '15:00',
-        disponivel: true
-    },
-    {
-        horario: '15:30',
-        disponivel: true
-    },
-    {
-        horario: '16:00',
-        disponivel: false
-    },
-    {
-        horario: '16:30',
-        disponivel: false
-    },
-    {
-        horario: '17:00',
-        disponivel: false
-    },
-    {
-        horario: '17:30',
-        disponivel: false
+        dia: '2024-05-18',
+        horario:'10:30',
+        nome: 'Tuts Works'
     },
 ]

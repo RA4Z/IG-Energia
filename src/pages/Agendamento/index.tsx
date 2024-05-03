@@ -3,13 +3,14 @@ import dayjs from 'dayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import classNames from 'classnames';
-import { horariosDisponiveis } from './horarios';
+import { horariosDisponiveis, horariosReservados } from './horarios';
 import BotaoMain from 'components/BotaoMain';
 
 export default function Agendamento() {
     const [diaAgendado, setdiaAgendado] = useState(dayjs());
+    const [horariosLivres, setHorariosLivres] = useState(horariosDisponiveis.durante_semana)
     const [horarioAgendado, setHorarioAgendado] = useState('')
     const [tipoAgendamento, setTipoAgendamento] = useState([
         {
@@ -29,6 +30,37 @@ export default function Agendamento() {
             selecionado: false
         },
     ])
+
+    useEffect(() => {
+        let novosHorarios = [...horariosLivres]
+        if (diaAgendado.day() === 6) {
+            setHorariosLivres(horariosDisponiveis.final_semana)
+            novosHorarios = [...horariosDisponiveis.final_semana]
+
+        } else if (diaAgendado.day() >= 2 && diaAgendado.day() <= 5) {
+            setHorariosLivres(horariosDisponiveis.durante_semana)
+            novosHorarios = [...horariosDisponiveis.durante_semana]
+
+        } else {
+            setHorariosLivres([])
+            novosHorarios = []
+        }
+
+        let horarios: string[] = []
+        horariosReservados.forEach(reserva => {
+            if (reserva.dia === diaAgendado.format('YYYY-MM-DD')) {
+                horarios.push(reserva.horario)
+            }
+        })
+        for (let i = 0; i < novosHorarios.length; i++) {
+            if (horarios.includes(novosHorarios[i].horario)) {
+                novosHorarios[i].disponivel = false
+            } else {
+                novosHorarios[i].disponivel = true
+            }
+        }
+        setHorariosLivres(novosHorarios)
+    }, [diaAgendado])
 
     function selecionarHorario(horario: any) {
         if (horarioAgendado === horario) return setHorarioAgendado('');
@@ -68,16 +100,7 @@ export default function Agendamento() {
                 <div className={styles.selecionar__horario}>
                     <p>Selecione o horário desejado de atendimento:</p>
                     <ul>
-                        {diaAgendado.day() === 6 && horariosDisponiveis.final_semana.map((atendimento, index) => (
-                            <li className={classNames({
-                                [styles.blocked]: !atendimento.disponivel,
-                                [styles.list]: atendimento.disponivel,
-                                [styles['list--ativo']]: horarioAgendado === atendimento.horario
-                            })} key={index} onClick={() => atendimento.disponivel && selecionarHorario(atendimento.horario)}>
-                                {atendimento.horario}
-                            </li>
-                        ))}
-                        {(diaAgendado.day() >=2 && diaAgendado.day() <=5) && horariosDisponiveis.durante_semana.map((atendimento, index) => (
+                        {horariosLivres.map((atendimento, index) => (
                             <li className={classNames({
                                 [styles.blocked]: !atendimento.disponivel,
                                 [styles.list]: atendimento.disponivel,
@@ -87,7 +110,7 @@ export default function Agendamento() {
                             </li>
                         ))}
                     </ul>
-                    <BotaoMain text='Agendar Horário' onClick={() => fazerAgendamento()} />
+                    {horariosLivres.length > 0 && <BotaoMain text='Agendar Horário' onClick={() => fazerAgendamento()} />}
                 </div>
             </div>
         </div>
