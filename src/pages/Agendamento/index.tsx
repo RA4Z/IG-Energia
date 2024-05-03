@@ -3,9 +3,9 @@ import dayjs from 'dayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import classNames from 'classnames';
-import { horariosAtendimento } from './horarios';
+import { horariosDisponiveis } from './horarios';
 import BotaoMain from 'components/BotaoMain';
 
 export default function Agendamento() {
@@ -68,7 +68,16 @@ export default function Agendamento() {
                 <div className={styles.selecionar__horario}>
                     <p>Selecione o horário desejado de atendimento:</p>
                     <ul>
-                        {horariosAtendimento.map((atendimento, index) => (
+                        {diaAgendado.day() === 6 && horariosDisponiveis.final_semana.map((atendimento, index) => (
+                            <li className={classNames({
+                                [styles.blocked]: !atendimento.disponivel,
+                                [styles.list]: atendimento.disponivel,
+                                [styles['list--ativo']]: horarioAgendado === atendimento.horario
+                            })} key={index} onClick={() => atendimento.disponivel && selecionarHorario(atendimento.horario)}>
+                                {atendimento.horario}
+                            </li>
+                        ))}
+                        {(diaAgendado.day() >=2 && diaAgendado.day() <=5) && horariosDisponiveis.durante_semana.map((atendimento, index) => (
                             <li className={classNames({
                                 [styles.blocked]: !atendimento.disponivel,
                                 [styles.list]: atendimento.disponivel,
