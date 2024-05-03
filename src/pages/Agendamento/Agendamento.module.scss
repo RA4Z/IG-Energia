@@ -142,6 +142,18 @@
         font-size: large;
         transition: .5s;
 
+        &[aria-selected="true"] {
+            background-color: $secondary;
+
+            &:focus {
+                background-color: $secondary;
+            }
+
+            &:hover {
+                background-color: $primary;
+            }
+        }
+
         &:hover {
             background-color: $backgrounds;
         }
