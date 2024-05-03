@@ -137,4 +137,13 @@
     @media(max-width: 350px) {
         width: 100%;
     }
+
+    button {
+        font-size: large;
+        transition: .5s;
+
+        &:hover {
+            background-color: $backgrounds;
+        }
+    }
 }
