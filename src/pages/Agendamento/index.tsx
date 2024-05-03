@@ -32,35 +32,21 @@ export default function Agendamento() {
     ])
 
     useEffect(() => {
-        let novosHorarios = [...horariosLivres]
-        if (diaAgendado.day() === 6) {
-            setHorariosLivres(horariosDisponiveis.final_semana)
-            novosHorarios = [...horariosDisponiveis.final_semana]
-
-        } else if (diaAgendado.day() >= 2 && diaAgendado.day() <= 5) {
-            setHorariosLivres(horariosDisponiveis.durante_semana)
-            novosHorarios = [...horariosDisponiveis.durante_semana]
-
-        } else {
-            setHorariosLivres([])
-            novosHorarios = []
-        }
-
-        let horarios: string[] = []
-        horariosReservados.forEach(reserva => {
+        let horariosLivres = horariosDisponiveis[diaAgendado.day() === 6 ? 'final_semana' : 'durante_semana'].slice();
+        if (diaAgendado.day() <= 1) horariosLivres = []
+        const horarios = horariosReservados.reduce((acc: string[], reserva) => {
             if (reserva.dia === diaAgendado.format('YYYY-MM-DD')) {
-                horarios.push(reserva.horario)
+                acc.push(reserva.horario);
             }
-        })
-        for (let i = 0; i < novosHorarios.length; i++) {
-            if (horarios.includes(novosHorarios[i].horario)) {
-                novosHorarios[i].disponivel = false
-            } else {
-                novosHorarios[i].disponivel = true
-            }
-        }
-        setHorariosLivres(novosHorarios)
-    }, [diaAgendado])
+            return acc;
+        }, []);
+
+        horariosLivres.forEach(horario => {
+            horario.disponivel = !horarios.includes(horario.horario);
+        });
+
+        setHorariosLivres(horariosLivres);
+    }, [diaAgendado]);
 
     function selecionarHorario(horario: any) {
         if (horarioAgendado === horario) return setHorarioAgendado('');
