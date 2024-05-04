@@ -84,7 +84,7 @@ export default function Agendamento() {
                         onChange={(newValue) => { setdiaAgendado(newValue); setHorarioAgendado('') }} />
                 </LocalizationProvider>
                 <div className={styles.selecionar__horario}>
-                    <p>Selecione o horário desejado de atendimento:</p>
+                    {horariosLivres.length > 0 && <p>Selecione o horário desejado de atendimento:</p>}
                     <ul>
                         {horariosLivres.map((atendimento, index) => (
                             <li className={classNames({
@@ -96,7 +96,8 @@ export default function Agendamento() {
                             </li>
                         ))}
                     </ul>
-                    {horariosLivres.length > 0 && <BotaoMain text='Agendar Horário' onClick={() => fazerAgendamento()} />}
+                    {horariosLivres.length > 0 ? <BotaoMain text='Agendar Horário' onClick={() => fazerAgendamento()} />
+                        : <h2>No dia selecionado não existem horários disponíveis!</h2>}
                 </div>
             </div>
         </div>
