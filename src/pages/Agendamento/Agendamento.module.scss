@@ -64,6 +64,7 @@
     text-align: center;
     gap: 10px;
     flex-wrap: wrap;
+    color: $texto;
 
     @media(max-width:$mobile) {
         width: 100%;
@@ -71,6 +72,11 @@
 
     &__horario {
         padding: 10px;
+
+        h2 {
+            font-size: 1.25rem;
+            font-weight: normal;
+        }
 
         p {
             font-size: 1.1rem;
@@ -150,7 +156,7 @@
             }
 
             &:hover {
-                background-color: $primary;
+                background-color: $secondary;
             }
         }
 
