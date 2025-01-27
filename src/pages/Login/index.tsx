@@ -1,4 +1,4 @@
-import { login } from 'services/auth';
+import { login } from 'services/requisitions';
 import styles from './Login.module.scss';
 import { memo, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';

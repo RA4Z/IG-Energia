@@ -19,6 +19,7 @@
     "@types/react-dom": "^18.2.24",
     "classnames": "^2.5.1",
     "dayjs": "^1.11.11",
+    "firebase": "^11.2.0",
     "font-awesome": "^4.7.0",
     "material-ui-popup-state": "^5.1.0",
     "ol": "^9.1.0",

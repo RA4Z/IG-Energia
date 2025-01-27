@@ -17,8 +17,8 @@ export default function Maps() {
 
     useEffect(() => {
         const iconFeature = new Feature({
-            geometry: new Point([-49.0838938, -26.4042748]),
-            name: 'Academia Body Evolution',
+            geometry: new Point([-49.101271, -26.5060218]),
+            name: 'IG Energia Renovável',
             population: 4000,
             rainfall: 500,
         });
@@ -51,7 +51,7 @@ export default function Maps() {
                 ],
                 view: new View({
                     projection: 'EPSG:4326',
-                    center: [-49.0838538, -26.4044748], // Converta as coordenadas para usar longitude e latitude
+                    center: [-49.101271, -26.5060218], // Converta as coordenadas para usar longitude e latitude
                     zoom: 18, // Defina o nível de zoom
                 })
             });
