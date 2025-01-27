@@ -12,14 +12,13 @@ import { getDatabase } from "firebase/database";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyB3pN2a8xZEbxmhpZ-XVcJYJ-jsh87ut5g",
-    authDomain: "server-of-business.firebaseapp.com",
-    projectId: "server-of-business",
-    storageBucket: "server-of-business.appspot.com",
-    messagingSenderId: "272108888489",
-    appId: "1:272108888489:web:581e39b679b9d3cb9424b8",
-    measurementId: "G-JJCYGM15HJ",
-    databaseURL: "https://server-of-business-default-rtdb.firebaseio.com",
+    apiKey: "AIzaSyBeSQMvww6TA0R-FdWQJJM4Lo7RjTBnblM",
+    authDomain: "ig-energia.firebaseapp.com",
+    projectId: "ig-energia",
+    storageBucket: "ig-energia.firebasestorage.app",
+    messagingSenderId: "822428285638",
+    appId: "1:822428285638:web:62aced003baa6c34df35c7",
+    measurementId: "G-SYDQ1M14F0"
 };
 
 // Initialize Firebase

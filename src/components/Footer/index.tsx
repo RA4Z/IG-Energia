@@ -3,7 +3,6 @@ import styles from './Footer.module.scss'
 import Logo from 'assets/logo.svg'
 import { useNavigate } from 'react-router-dom'
 import { memo, useEffect, useState } from 'react'
-import { supabase } from 'config/supabase'
 import BotaoMain from 'components/BotaoMain'
 import Maps from 'components/Maps'
 import Social from './Social'
@@ -15,15 +14,15 @@ function Footer() {
     const navigate = useNavigate()
     const [user, setUser] = useState('')
 
+    //VERIFICAR SE ESTÁ LOGADO
     useEffect(() => {
-        async function getUserLogged() {
-            const user = (await supabase.auth.getUser()).data.user?.email
-            if (user !== '' && user !== undefined) {
-                setUser(user)
+        const estadoUsuario = auth.onAuthStateChanged(usuario => {
+            if (usuario) {
+                setUser(usuario.email!)
             }
-        }
-        getUserLogged()
-    }, [])
+        })
+        return () => estadoUsuario();
+    })
 
     const handleLogout = () => {
         signOut(auth).then(() => {
