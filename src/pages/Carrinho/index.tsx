@@ -7,8 +7,10 @@ import { memo, useEffect, useState } from 'react'
 import InputOption from 'components/InputOption'
 import Whatsapp from 'components/Whatsapp'
 import { CarrinhoType } from 'types/sistema'
+import { BasicRules } from 'utils/basicRules'
 
 function Carrinho() {
+    BasicRules()
     const [envio, setEnvio] = useState('')
     const [items, setItems] = useState<CarrinhoType[]>([])
     const [deletando, setDeletando] = useState(false)

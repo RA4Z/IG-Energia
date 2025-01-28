@@ -7,8 +7,10 @@ import { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { horariosDisponiveis, horariosReservados } from './horarios';
 import BotaoMain from 'components/BotaoMain';
+import { BasicRules } from 'utils/basicRules';
 
 export default function Agendamento() {
+    BasicRules()
     const [diaAgendado, setdiaAgendado] = useState(dayjs());
     const [horariosLivres, setHorariosLivres] = useState(horariosDisponiveis.durante_semana)
     const [horarioAgendado, setHorarioAgendado] = useState('')

@@ -8,8 +8,10 @@ import { getData } from "services/table"
 import Buscador from './Buscador';
 import { Divider } from '@mui/material';
 import { tablePath } from 'types/database';
+import { BasicRules } from 'utils/basicRules';
 
 function Catalogo() {
+    BasicRules()
     const [items, setItems] = useState<CarrinhoType[]>([])
     const [filtro, setFiltro] = useState<string>('');
     const [busca, setBusca] = useState('');

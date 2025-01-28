@@ -33,7 +33,7 @@ function Login() {
         setLoading(true)
         const result = await cadastrar(cadastro.email, cadastro.senha, { nome: cadastro.nome, email: cadastro.email })
         setLoading(false)
-        alert(result)
+        console.log(result)
     }
 
     async function userLogin() {
